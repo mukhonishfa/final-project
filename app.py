@@ -106,7 +106,7 @@ def run_ml_app():
         
     # If button is clilcked
     if button:
-        if data.shape[1] == 26:
+        if data.shape[1] == 9:
             # Transformation with scaler
             data_scaled = scaler.transform(data)
             

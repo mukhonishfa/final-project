@@ -85,7 +85,6 @@ def run_ml_app():
         'song_duration_ms':[song_duration_ms],
         'acousticness':[acousticness],
         'danceability':[danceability],
-        'energy':[energy],
         'instrumentalness':[instrumentalness],
         'liveness':[liveness],
         'loudness':[loudness],

@@ -73,7 +73,7 @@ def run_ml_app():
     speechiness = right.number_input('Speechiness', min_value=0.00, max_value=1.00, step=0.01)
     tempo = left.number_input('Tempo', min_value=0.00, max_value=1.00, step=0.01)
     audio_valence = right.number_input('Audio Valence', min_value=0.00, max_value=1.00, step=0.01)
-    selected_ts = left.selectbox('Time Signature', [1,3,4,5])
+    selected_ts = left.selectbox('Time Signature', [1,4,5])
     selected_key = right.selectbox('Key', list(range(1,12)))
     button = st.button('Predict')
 

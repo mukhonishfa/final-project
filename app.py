@@ -106,6 +106,8 @@ def run_ml_app():
         
     # If button is clilcked
     if button:
+        print(f"Shape of data: {data.shape}")
+        print(f"Columns in data: {data.columns}")
         if data.shape[1] == 26:
             # Transformation with scaler
             data_scaled = scaler.transform(data)

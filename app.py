@@ -40,21 +40,14 @@ def main():
         st.markdown(desc_temp, unsafe_allow_html=True)
     elif choice == "Machine Learning App":
         run_ml_app()
-
+        
 # One-Hot Encoding
-def one_hot_encode_time_signature(selected_ts):
-    encoded = {}
-    valid_time_signatures = [1, 3, 4, 5]
-    for ts in valid_time_signatures:
-        encoded[f'time_signature_{ts}'] = [1 if selected_ts == ts else 0]
-    return encoded
-
 def one_hot_encode_key(selected_key):
     encoded = {}
     for i in range(1,12):
         encoded[f'key_{i}'] = [1 if selected_key == i else 0]
     return encoded
-
+    
 def run_ml_app():
     design = """<div style="padding:15px;">
                     <h1 style="color:#fff">Song Popularity Prediction</h1>
@@ -70,15 +63,10 @@ def run_ml_app():
     instrumentalness = left.number_input('Instrumentalness', min_value=0.00, max_value=1.00, step=0.01)
     liveness = right.number_input('Liveness', min_value=0.00, max_value=1.00, step=0.01)
     loudness = left.number_input('Loudness', min_value=-60.00, max_value=0.00, step=0.01)
-    audio_mode = right.selectbox('Audio Mode', [0,1])
-    speechiness = left.number_input('Speechiness', min_value=0.00, max_value=1.00, step=0.01)
-    tempo = right.number_input('Tempo', min_value=0.00, max_value=1.00, step=0.01)
-    audio_valence = left.number_input('Audio Valence', min_value=0.00, max_value=1.00, step=0.01)
-    selected_ts = right.selectbox('Time Signature', [1,3,4,5])
+    audio_valence = right.number_input('Audio Valence', min_value=0.00, max_value=1.00, step=0.01)
     selected_key = st.selectbox('Key', list(range(1,12)))
     button = st.button('Predict')
 
-    time_signature_encoded = one_hot_encode_time_signature(selected_ts)
     key_encoded = one_hot_encode_key(selected_key)
     
     # Making Dictionary
@@ -90,18 +78,13 @@ def run_ml_app():
         'instrumentalness':[instrumentalness],
         'liveness':[liveness],
         'loudness':[loudness],
-        'audio_mode':[audio_mode],
-        'speechiness':[speechiness],
-        'tempo':[tempo],
         'audio_valence':[audio_valence],
-        **time_signature_encoded,
         **key_encoded
     }
 
     data = pd.DataFrame(features, columns=[
         'song_duration_ms', 'acousticness', 'danceability', 'energy', 'instrumentalness', 'liveness', 'loudness',
-        'audio_mode', 'speechiness', 'tempo', 'audio_valence', 'time_signature_1', 'time_signature_3', 'time_signature_4',
-        'time_signature_5', 'key_1', 'key_2', 'key_3', 'key_4', 'key_5', 'key_6', 'key_7', 'key_8', 'key_9', 'key_10', 'key_11'
+        'audio_valence', 'key_2', 'key_7'
     ])
         
     # If button is clilcked

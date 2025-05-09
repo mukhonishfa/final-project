@@ -97,9 +97,9 @@ def run_ml_app():
     }
 
     data = pd.DataFrame(features, columns=[
-        'song_duration_ms', 'acousticness', 'danceability', 'energy', 'instrumentalness', 'liveness', 'loudness',
-        'audio_mode', 'speechiness', 'tempo', 'audio_valence', 'time_signature_1', 'time_signature_4',
-        'time_signature_5', 'key_1', 'key_2', 'key_3', 'key_4', 'key_5', 'key_6', 'key_7', 'key_8', 'key_9', 'key_10', 'key_11'
+        'song_duration_ms', 'acousticness', 'danceability', 'instrumentalness', 'liveness', 'loudness', 'audio_mode',
+        'speechiness', 'tempo', 'audio_valence', 'time_signature_1', 'time_signature_4', 'time_signature_5', 'key_1',
+        'key_2', 'key_3', 'key_4', 'key_5', 'key_6', 'key_7', 'key_8', 'key_9', 'key_10', 'key_11'
     ])
         
     # If button is clilcked

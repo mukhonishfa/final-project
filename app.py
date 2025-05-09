@@ -89,7 +89,7 @@ def run_ml_app():
         
     # If button is clilcked
     if button:
-        if data.shape[1] == 9:
+        if data.shape[1] == 10:
             # Transformation with scaler
             data_scaled = scaler.transform(data)
             
@@ -97,7 +97,7 @@ def run_ml_app():
             prediction = best_poly_model.predict(data_scaled)
             st.success(f'Predicted Song Popularity: {prediction[0]:.2f}')
         else:
-            st.error(f'Error: Incorrect number of features. Expected 26, but got {data.shape[1]}.')
+            st.error(f'Error: Incorrect number of features. Expected 10, but got {data.shape[1]}.')
 
 if __name__ == "__main__":
     main()

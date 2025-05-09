@@ -44,7 +44,7 @@ def main():
 # One-Hot Encoding
 def one_hot_encode_time_signature(selected_ts):
     encoded = {}
-    valid_time_signatures = [1, 3, 4, 5]
+    valid_time_signatures = [1, 4, 5]
     for ts in valid_time_signatures:
         encoded[f'time_signature_{ts}'] = [1 if selected_ts == ts else 0]
     return encoded
@@ -66,7 +66,6 @@ def run_ml_app():
     song_duration_ms = left.number_input('Song Duration (ms)', min_value=0, max_value=600000, step=1000)
     acousticness = right.number_input('Acousticness', min_value=0.00, max_value=1.00, step=0.01)
     danceability = left.number_input('Danceability', min_value=0.00, max_value=1.00, step=0.01)
-    energy = right.number_input('Energy', min_value=0.00, max_value=1.00, step=0.01)
     instrumentalness = left.number_input('Instrumentalness', min_value=0.00, max_value=1.00, step=0.01)
     liveness = right.number_input('Liveness', min_value=0.00, max_value=1.00, step=0.01)
     loudness = left.number_input('Loudness', min_value=-60.00, max_value=0.00, step=0.01)
@@ -100,13 +99,13 @@ def run_ml_app():
 
     data = pd.DataFrame(features, columns=[
         'song_duration_ms', 'acousticness', 'danceability', 'energy', 'instrumentalness', 'liveness', 'loudness',
-        'audio_mode', 'speechiness', 'tempo', 'audio_valence', 'time_signature_1', 'time_signature_3', 'time_signature_4',
+        'audio_mode', 'speechiness', 'tempo', 'audio_valence', 'time_signature_1', 'time_signature_4',
         'time_signature_5', 'key_1', 'key_2', 'key_3', 'key_4', 'key_5', 'key_6', 'key_7', 'key_8', 'key_9', 'key_10', 'key_11'
     ])
         
     # If button is clilcked
     if button:
-        if data.shape[1] == 26:
+        if data.shape[1] == 24:
             # Transformation with scaler
             data_scaled = scaler.transform(data)
             
@@ -114,7 +113,7 @@ def run_ml_app():
             prediction = best_elastic_net_model.predict(data_scaled)
             st.success(f'Predicted Song Popularity: {prediction[0]:.2f}')
         else:
-            st.error(f'Error: Incorrect number of features. Expected 26, but got {data.shape[1]}.')
+            st.error(f'Error: Incorrect number of features. Expected 24, but got {data.shape[1]}.')
 
 if __name__ == "__main__":
     main()

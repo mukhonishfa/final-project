@@ -111,7 +111,7 @@ def run_ml_app():
             data_scaled = scaler.transform(data)
             
             # Making prediction
-            prediction = elastic_net_model.predict(data_scaled)
+            prediction = best_elastic_net_model.predict(data_scaled)
             st.success(f'Predicted Song Popularity: {prediction[0]:.2f}')
         else:
             st.error(f'Error: Incorrect number of features. Expected 26, but got {data.shape[1]}.')
